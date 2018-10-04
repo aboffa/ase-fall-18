@@ -11,6 +11,9 @@ def sum(m,n):
     return result
 
 def divide(m,n):
+    if n==0 :
+	    raise ZeroDivisionError()
+		
     result=0
     negativeResult=False
     if n < 0:
@@ -25,5 +28,3 @@ def divide(m,n):
     result = -result if negativeResult else result
     return result
 
-#print(sum(-10,-2))
-#print(divide(10,-1))
