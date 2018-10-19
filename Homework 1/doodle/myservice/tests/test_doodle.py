@@ -364,5 +364,63 @@ class TestApp(unittest.TestCase):
                                 "message": "410 Gone: The requested URL is no longer available on this server and there is no forwarding address. If you followed a link from a foreign page, please contact the author of this page."
                             })
 
+    def test4(self):
+        app = tested_app.test_client()
+        reply = app.post('/doodles', 
+                         data=json.dumps({"title" : "test4", 
+                                          "options" : []
+                                          }), 
+                         content_type='application/json')
+
+        body = json.loads(str(reply.data, 'utf8'))
+
+        self.assertEqual(body['pollnumber'], 4)
+        
+        reply = app.delete('/doodles/4')
+
+
+        app = tested_app.test_client()
+        reply = app.post('/doodles', 
+                         data=json.dumps({"title" : "test5", 
+                                          "options" : []
+                                          }), 
+                         content_type='application/json')
+
+        body = json.loads(str(reply.data, 'utf8'))
+
+        self.assertEqual(body['pollnumber'], 5)
+        
+
+        app = tested_app.test_client()
+        reply = app.post('/doodles', 
+                         data=json.dumps({"title" : "test6", 
+                                          "options" : []
+                                          }), 
+                         content_type='application/json')
+
+        body = json.loads(str(reply.data, 'utf8'))
+
+        self.assertEqual(body['pollnumber'], 6)
+        
+        reply = app.delete('/doodles/6')
+
+        
+
+        app = tested_app.test_client()
+        reply = app.post('/doodles', 
+                         data=json.dumps({"title" : "test6", 
+                                          "options" : []
+                                          }), 
+                         content_type='application/json')
+
+        body = json.loads(str(reply.data, 'utf8'))
+
+        self.assertEqual(body['pollnumber'], 7)
+        
+        
+
+
+
+
         
 
